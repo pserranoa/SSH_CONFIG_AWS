@@ -111,9 +111,11 @@ for instance in instances:
 			target.write("	hostname %s\n" % (ip_public))
 		target.write("	User %s\n" %(default_username (image_name)))
 		target.write("	IdentityFile    ~/.ssh/%s.pem\n" % (ssh_key))
-target.close()
 print("\n\n")
 print("Total number of instances created on config: %s\n" %(tinstances))
 print("You will need the follogint keys on your home .ssh path:\n")
+target.write("\n#Required keys\n")
 for needkey in list_keys:
     print("- %s.pem" % (needkey))
+    target.write("# %s.pemi\n" % (needkey))
+target.close()
