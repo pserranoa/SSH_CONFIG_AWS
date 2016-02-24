@@ -112,5 +112,5 @@ print("You will need the follogint keys on your home .ssh path:\n")
 target.write("\n#Required keys\n")
 for needkey in list_keys:
     print("- %s.pem" % (needkey))
-    target.write("# %s.pemi\n" % (needkey))
+    target.write("# %s.pem\n" % (needkey))
 target.close()
