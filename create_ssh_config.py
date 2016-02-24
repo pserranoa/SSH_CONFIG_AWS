@@ -1,4 +1,7 @@
 #!/usr/bin/python
+# author:pserrano
+# create config file for ssh to access aws machine
+# need boto3 and aws credentials configured
 
 import boto3
 import os
@@ -18,32 +21,24 @@ if os.path.isfile(salida):
 def default_username( image_name ):
 	if image_name.startswith('CentOS'):
 		luser = "centos"
+  	elif image_name.startswith('ubuntu'):
+  		luser = "ubuntu"
+	elif image_name.startswith('Fedora'):
+	  	luser = "ec2-user"
+	elif image_name.startswith('amzn'):
+		luser = "ec2-user"
+	elif image_name.startswith('debian'):
+		luser = "admin"
+	elif image_name.startswith('OmniOS'):
+		luser = "root"
+	elif image_name.startswith('FreeBDS'):
+		luser = "ec2-user"
+	elif image_name.startswith('SUSE'):
+		luser = "root"
+	elif image_name.startswith('RHEL'):
+		luser = "ec2-user"
 	else:
-  		if image_name.startswith('ubuntu'):
-  			luser = "ubuntu"
-		else:
-			if image_name.startswith('Fedora'):
-	  			luser = "ec2-user"
-			else:
-				if image_name.startswith('amzn'):
-		  			luser = "ec2-user"
-				else:
-					if image_name.startswith('debian'):
-						luser = "admin"
-					else:
-						if image_name.startswith('OmniOS'):
-							luser = "root"
-						else:
-							if image_name.startswith('FreeBDS'):
-								luser = "ec2-user"
-							else:
-								if image_name.startswith('SUSE'):
-									luser = "root"
-								else:
-									if image_name.startswith('RHEL'):
-										luser = "ec2-user"
-									else:
-										luser="ec2-user"
+		luser="ec2-user"
 	return luser;
 
 instances=ec2.instances.all()
